@@ -137,7 +137,7 @@ let compileList = (results) => {
     output = "<ons-list>";
 
     for(let i=0; i< results.length; i++ ){
-        output += `<ons-list-item tappable data-id='${results[i].rowid}'>${results[i].title}</ons-list-item>`;
+        output += `<ons-list-item tappable class="trip-item" data-id='${results[i].rowid}'>${results[i].title}</ons-list-item>`;
     }
   
     output +="</ons-list>";

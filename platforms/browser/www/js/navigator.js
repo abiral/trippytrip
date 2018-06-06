@@ -49,6 +49,11 @@ jQuery(document).on('init', event => {
           })
         }
       });
+
+      jQuery(document).on('tap', '.trip-item', event => {
+        let id = jQuery(event.currentTarget).data('id');
+        document.querySelector('#navigator').pushPage('ads-single.html', {data:{ ads_id: id} } );
+      });
     break;
 
     case 'ads-single':
