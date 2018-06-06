@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" href="onsenui/css/onsenui.min.css">
+    <link rel="stylesheet" href="onsenui/css/onsen-css-components.min.css">
+    <link rel="stylesheet" href="css/index.css">
+
+    <title>Trippy Trip</title>
+</head>
+
+<body>
+    <ons-navigator id="navigator" page="home.html" animation="slide"></ons-navigator>
+
+    <template id="home.html">
+        <ons-page id="home">
+
+            <div class="toolbar">
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </div>
+            
+            <div class="card-content navigation">
+                <button id="nav-search" onclick="navigate('search.html')" class="button button--material button-primary button-cta" data-target="search.html" >Search</button>
+                
+                <button id="nav-post-ads" onclick="navigate('post-ads.html')" class="button button--material button-primary button-cta" data-target="post-ads.html" >Post Free Ad</button>
+                
+                <button id="nav-log-me-in" onclick="navigate('login.html')" class="button button--material button-primary button-cta" data-target="login.html">Login</button>
+                
+                <button id="nav-sign-me-up" onclick="navigate('register.html')" class="button button--material button-primary button-cta" data-target="register.html">Register</button>
+            </div>
+        </ons-page>
+    </template>
+
+    <template id="register.html">
+        <ons-page id="register" >
+            <ons-toolbar class="toolbar" inline>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </ons-toolbar>
+            
+            <div class="card-content">
+                <div style="text-align: center; margin-top: 30px;">
+                    <p class="form-control">
+                      <ons-input id="fname" modifier="underbar" placeholder="First Name" float></ons-input>
+                    </p>
+                    
+                    <p class="form-control" >
+                      <ons-input id="lname" modifier="underbar" placeholder="Last Name" float></ons-input>
+                    </p>
+                    
+                    <p class="form-control">
+                      <ons-input id="email" type="email" modifier="underbar" placeholder="Email" float></ons-input>
+                    </p>
+                    
+                    <p class="form-control">
+                      <ons-input id="passkey" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+                    </p>
+
+                    <p class="form-control">
+                      <ons-input id="retype-password" modifier="underbar" type="password" placeholder="Re type password" float></ons-input>
+                    </p>
+
+                    <p class="form-control">
+                      <ons-input id="mobile" type="tel" modifier="underbar" placeholder="Mobile" float></ons-input>
+                    </p>
+
+                    <p class="form-control">
+                        <label class="left">
+                            <ons-checkbox input-id="agree-terms-condition"></ons-checkbox>
+                        </label>
+                        <label for="agree-terms-condition" class="center">I have read and agree to all the terms & conditions</label>
+                    </p>
+                    
+                    <p style="margin-top: 30px;">
+                      <ons-button modifier="large" id="btn-register" disabled onclick="register()" >Register</ons-button>
+                    </p>
+                </div>
+            </div>
+        </ons-page>
+    </template>
+
+    <template id="login.html">
+        <ons-page id="login" >
+            <ons-toolbar class="toolbar" inline>
+                <div class="left"><ons-back-button>Home</ons-back-button></div>
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </ons-toolbar>
+            
+            <div class="card-content">
+                <div style="text-align: center; margin-top: 30px;">
+                    <p class="form-control" >
+                      <ons-input id="email" type="email" modifier="underbar" placeholder="Email" float></ons-input>
+                    </p>
+                    <p class="form-control" >
+                      <ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input>
+                    </p>
+                    <p style="margin-top: 30px;">
+                        <ons-button class="button-cta" modifier="large" onclick="login()">Login</ons-button>
+                        <ons-button class="button-cta" modifier="large" onclick="navigate('register.html')">Register</ons-button>
+                    </p>
+                </div>
+            </div>
+        </ons-page>
+    </template>
+
+    <template id="search.html">
+        <ons-page id="search" >
+            <ons-toolbar class="toolbar" inline>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </ons-toolbar>
+            
+            <div class="card-content">
+                <p style="text-align: center; margin-top: 10px;">
+                    <ons-search-input placeholder="Search" id="search-input"></ons-search-input>
+                </p>
+
+                <div id="results"></div>
+            </div>
+            
+        </ons-page>
+    </template>
+    
+    <template id="post-ads.html">
+        <ons-page id="post-ads">
+            <ons-tabbar swipeable position="top">
+                <ons-tab page="uploads.html" label="Picture" active></ons-tab>
+                <ons-tab page="ads-category.html" label="Category"></ons-tab>
+                <ons-tab page="ads-details.html" label="Details"></ons-tab>
+            </ons-tabbar>
+        </ons-page>
+    </template>
+
+    <template id="ads-single.html">
+        <ons-page id="ads-single" >
+            <ons-toolbar class="toolbar" inline>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </ons-toolbar>
+                
+            <div class="card-content">
+                <img id="photo" src="img/placeholder.png" style="width:100%" />
+                <div id="categories" class="categories"></div>
+                <h3 id="title" class="ads-title"></h3>
+                <div class="tabular" >
+                    <ons-row class="table-row">
+                        <ons-col width="190px" class="table-label" >Price Range</ons-col>
+                        <ons-col id="price" class="table-data">$ <span class="content"></span></ons-col>
+                    </ons-row>
+
+                    <ons-row>
+                        <ons-col width="190px" class="table-label" >Number of Passengers</ons-col>
+                        <ons-col id="travellers" class="table-data"><span class="content"></span></ons-col>
+                    </ons-row>
+                </div>
+                <button id="delete-ads" class="button button--material button-danger button-cta" data-id="" >Delete</button>
+            </div>
+        </ons-page>
+    </template>
+
+    <template id="uploads.html">
+        <ons-page id="uploads" >
+            <ons-toolbar class="toolbar" inline>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </ons-toolbar>
+                
+            <div class="card-content">
+                <img id="photo" src="img/placeholder.png" class="img-preview" style="width:100%" />
+                <button id="upload" class="button button--material button-secondary button-cta" onclick="requestUpload()" >Upload</button>
+            </div>
+        </ons-page>
+    </template>
+
+    <template id="ads-category.html">
+        <ons-page id="ads-category" >
+            <ons-toolbar class="toolbar" inline>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </ons-toolbar>
+                
+            <div class="card-content">
+                <ons-list class="categories-list">
+                    <ons-list-header>Destination</ons-list-header>
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="sydney"></ons-checkbox>
+                        </label>
+                        <label for="sydney" class="center">Sydney</label>
+                    </ons-list-item>
+                    
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="melbourne"></ons-checkbox>
+                        </label>
+                        <label for="melbourne" class="center">Melbourne</label>
+                    </ons-list-item>
+
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="tasmania"></ons-checkbox>
+                        </label>
+                        <label for="tasmania" class="center">Tasmania</label>
+                    </ons-list-item>
+                </ons-list>
+
+                <ons-list>
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="accomodation"></ons-checkbox>
+                        </label>
+                        <label for="accomodation" class="center">Accomodation</label>
+                    </ons-list-item>
+                </ons-list>
+
+                <ons-list>
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="transportation"></ons-checkbox>
+                        </label>
+                        <label for="transportation" class="center">Transportation</label>
+                    </ons-list-item>
+                </ons-list>
+
+                <ons-list>
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="adventure-sport"></ons-checkbox>
+                        </label>
+                        <label for="adventure-sport" class="center">Adventure Sport</label>
+                    </ons-list-item>
+                </ons-list>
+            </div>
+        </ons-page>
+    </template>
+
+    <template id="ads-details.html">
+        <ons-page id="ads-details" >
+            <ons-toolbar class="toolbar" inline>
+                <div class="left"><ons-back-button>Back</ons-back-button></div>
+                <div class="card-title toolbar__center">Trippy Trip</div>
+            </ons-toolbar>
+                
+            <div class="card-content">
+                <div style="text-align: center; margin-top: 30px;">
+                    <p class="form-control" >
+                      <ons-input id="title" type="text" modifier="underbar" placeholder="Title" float></ons-input>
+                    </p>
+
+                    <p class="form-control" >
+                      <ons-input id="price" type="text" modifier="underbar" placeholder="Price Range" float></ons-input>
+                    </p>
+
+                    <p class="form-control" >
+                      <ons-input id="travellers" modifier="underbar" type="text" placeholder="No. of traveller" float></ons-input>
+                    </p>
+                    <p style="margin-top: 30px;">
+                        <ons-button class="button-cta" modifier="large" onclick="addNewAds()">Submit</ons-button>
+                    </p>
+                </div>
+            </div>
+        </ons-page>
+    </template>
+
+    <ons-modal direction="up" >
+        <div style="text-align: center">
+            <p>
+                <ons-icon icon="md-spinner" size="28px" spin></ons-icon> Loading...
+            </p>
+        </div>
+    </ons-modal>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="onsenui/js/onsenui.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/navigator.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/functions.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+.toolbar {
+    background: #249c24;
+}
+
+.toolbar .card-title{
+    color: #fff;
+}
+
+.page__content {
+    background-color: #fff;
+}
+
+ons-back-button.back-button {
+    color: #fff;
+}
+
+span.back-button__icon {
+    fill: #fff;
+}
+
+.card-content {
+    padding: 10px 10px;
+}
+
+.button.button-cta {
+    margin: 10px 0;
+    padding: 8px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.button.button-primary{
+    background: #3e6fc7;
+}
+
+.button.button-secondary{
+    background: #194821;
+}
+
+p.form-control {
+ margin: 20px 0;   
+}
+
+ons-list.list {
+    margin-bottom: 10px;
+}
+
+ons-select{
+    width: 80%;
+    background: 0 0;
+}
+
+ons-select .select-input{
+    border-bottom: 1px solid #ccc;
+    color: #b1b1b2;
+}
+
+ons-input{
+    width:80%;
+}
+
+ons-search-input{
+    width:100%;
+}
+
+.categories {
+    text-align: center;
+    font-style: italic;
+    font-size: 14px;
+    padding: 0 00 10px;
+}
+
+.ads-title {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 15px !important;
+    background: #e0f5e0;
+    color: #303530;
+}
+
+ons-col.table-label {
+    background: #fdf6f6;
+    padding: 10px;
+    margin: 0 5px 5px 0;
+}
+
+ons-col.table-data {
+    background: #f1e7e7;
+    padding: 10px;
+    margin: 0 0 5px 0;
+}
+
+.button-danger{
+    background-color: #ad4141;
+}
